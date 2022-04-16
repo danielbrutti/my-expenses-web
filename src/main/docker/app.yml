@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  myexpenses-app:
+    build: ../../..
+    container_name: myexpenses-app
+    environment:
+    ports:
+      - 8081:8081

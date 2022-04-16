@@ -1,0 +1,58 @@
+
+entity MoneyAccount {
+	accountName String
+ 	initialBalance BigDecimal
+    accountType AccountType
+}
+
+entity Currency {
+	currencyName String
+    symbol String
+    usdPrice BigDecimal
+}
+
+entity AccountRecord {
+	date LocalDate
+	amount BigDecimal
+    type AccountRecordType
+}
+
+entity Category {
+	categoryName String
+    categoryType CategoryType
+}
+
+entity CategoryRule {
+	match String
+}
+
+enum AccountType {
+	TRANSACTIONAL, SAVINGS
+}
+
+enum CategoryType {
+	INCOME, EXPENSE
+}
+
+
+enum AccountRecordType {
+	INCOME, EXPENSE, DEPOSIT, WITHDRAW
+}
+
+relationship OneToMany {
+	MoneyAccount to AccountRecord{account}
+}
+
+relationship OneToOne {
+    CategoryRule{category} to Category
+}
+
+relationship ManyToOne {
+	MoneyAccount{currency} to Currency,
+    AccountRecord{category} to Category
+}
+
+paginate * with infinite-scroll
+dto * with mapstruct
+service * with serviceClass
+filter *
