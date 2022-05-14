@@ -1,0 +1,43 @@
+{
+  "name": "MoneyAccount",
+  "fields": [
+    {
+      "fieldName": "accountName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "initialBalance",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "accountType",
+      "fieldType": "AccountType",
+      "fieldValues": "TRANSACTIONAL,SAVINGS"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "accountRecord",
+      "otherEntityRelationshipName": "account",
+      "relationshipName": "accountRecord"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "currency",
+      "otherEntityRelationshipName": "moneyAccount",
+      "relationshipName": "currency",
+      "otherEntityField": "currencyName"
+    }
+  ],
+  "entityTableName": "money_account",
+  "dto": "mapstruct",
+  "pagination": "infinite-scroll",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20220416021208"
+}

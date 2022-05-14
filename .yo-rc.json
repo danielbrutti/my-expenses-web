@@ -49,6 +49,9 @@
     "cacheProvider": "ehcache",
     "buildTool": "maven",
     "enableHibernateCache": true,
-    "reactive": false
+    "reactive": false,
+    "entities": ["MoneyAccount", "Currency", "AccountRecord", "Category", "CategoryRule"],
+    "lastLiquibaseTimestamp": 1650075132000,
+    "appFolder": "my-expense-nodejs"
   }
 }

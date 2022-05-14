@@ -1,0 +1,25 @@
+{
+  "myExpensesApp": {
+    "categoryRule": {
+      "home": {
+        "title": "Category Rules",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Category Rule",
+        "createOrEditLabel": "Crear o editar Category Rule",
+        "notFound": "Ningún Category Rules encontrado"
+      },
+      "created": "Un nuevo Category Rule ha sido creado con el identificador {{ param }}",
+      "updated": "Un Category Rule ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Category Rule ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Category Rule {{ id }}?"
+      },
+      "detail": {
+        "title": "Category Rule"
+      },
+      "id": "ID",
+      "match": "Match",
+      "category": "Category"
+    }
+  }
+}

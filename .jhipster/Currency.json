@@ -1,0 +1,28 @@
+{
+  "name": "Currency",
+  "fields": [
+    {
+      "fieldName": "currencyName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "symbol",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "usdPrice",
+      "fieldType": "BigDecimal"
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "currency",
+  "dto": "mapstruct",
+  "pagination": "infinite-scroll",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20220416021209"
+}

@@ -7,6 +7,11 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entidades",
+        "moneyAccount": "Money Account",
+        "currency": "Currency",
+        "accountRecord": "Account Record",
+        "category": "Category",
+        "categoryRule": "Category Rule",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
@@ -86,6 +91,13 @@
       "dev": "Development"
     },
     "item-count": "Mostrando {{first}} - {{second}} de {{total}} elementos."
+  },
+  "filter": {
+    "btnCancel": "Cancelar",
+    "btnApply": "Aplicar",
+    "btnFilter": "Filtrar",
+    "btnClear": "Limpiar Filtro",
+    "title": "Filtros"
   },
   "entity": {
     "action": {

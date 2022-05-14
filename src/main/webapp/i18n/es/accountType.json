@@ -1,0 +1,9 @@
+{
+  "myExpensesApp": {
+    "AccountType": {
+      "null": "",
+      "TRANSACTIONAL": "Transaccional",
+      "SAVINGS": "Ahorros"
+    }
+  }
+}

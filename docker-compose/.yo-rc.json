@@ -1,0 +1,9 @@
+{
+  "generator-jhipster": {
+    "appsFolders": ["my-expense-nodejs"],
+    "directoryPath": "../../",
+    "monitoring": "no",
+    "serviceDiscoveryType": false,
+    "jwtSecretKey": "NjM2MWNjNjZmMjBkZDVhNDk0NWYyNGY0NWY3ZWVjNWVkYTkwMGRhMzQxYzgyOWRiMmRiYTk3N2I5MDg1MzNhZjFiYzM4NTE2NzVhNTc5NjAxYTJlYzkwN2QzM2NmN2E4MTY0YQ=="
+  }
+}

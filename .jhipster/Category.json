@@ -1,0 +1,25 @@
+{
+  "name": "Category",
+  "fields": [
+    {
+      "fieldName": "categoryName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "categoryType",
+      "fieldType": "CategoryType",
+      "fieldValues": "INCOME,EXPENSE"
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "category",
+  "dto": "mapstruct",
+  "pagination": "infinite-scroll",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20220416021211"
+}

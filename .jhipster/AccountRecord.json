@@ -1,0 +1,44 @@
+{
+  "name": "AccountRecord",
+  "fields": [
+    {
+      "fieldName": "date",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "amount",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "AccountRecordType",
+      "fieldValues": "INCOME,EXPENSE,DEPOSIT,WITHDRAW"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "category",
+      "otherEntityRelationshipName": "accountRecord",
+      "relationshipName": "category",
+      "otherEntityField": "categoryName"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "moneyAccount",
+      "otherEntityRelationshipName": "accountRecord",
+      "relationshipName": "account",
+      "otherEntityField": "accountName"
+    }
+  ],
+  "entityTableName": "account_record",
+  "dto": "mapstruct",
+  "pagination": "infinite-scroll",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20220416021210"
+}

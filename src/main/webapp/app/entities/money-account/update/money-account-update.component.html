@@ -1,0 +1,90 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-money-account-heading"
+        data-cy="MoneyAccountCreateUpdateHeading"
+        jhiTranslate="myExpensesApp.moneyAccount.home.createOrEditLabel"
+      >
+        Create or edit a Money Account
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="myExpensesApp.moneyAccount.accountName" for="field_accountName"
+            >Account Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="accountName"
+            id="field_accountName"
+            data-cy="accountName"
+            formControlName="accountName"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="myExpensesApp.moneyAccount.initialBalance" for="field_initialBalance"
+            >Initial Balance</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="initialBalance"
+            id="field_initialBalance"
+            data-cy="initialBalance"
+            formControlName="initialBalance"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="myExpensesApp.moneyAccount.accountType" for="field_accountType"
+            >Account Type</label
+          >
+          <select class="form-control" name="accountType" formControlName="accountType" id="field_accountType" data-cy="accountType">
+            <option [ngValue]="null">{{ 'myExpensesApp.AccountType.null' | translate }}</option>
+            <option value="TRANSACTIONAL">{{ 'myExpensesApp.AccountType.TRANSACTIONAL' | translate }}</option>
+            <option value="SAVINGS">{{ 'myExpensesApp.AccountType.SAVINGS' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="myExpensesApp.moneyAccount.currency" for="field_currency">Currency</label>
+          <select class="form-control" id="field_currency" data-cy="currency" name="currency" formControlName="currency">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="currencyOption.id === editForm.get('currency')!.value?.id ? editForm.get('currency')!.value : currencyOption"
+              *ngFor="let currencyOption of currenciesSharedCollection; trackBy: trackCurrencyById"
+            >
+              {{ currencyOption.currencyName }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

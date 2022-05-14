@@ -1,0 +1,29 @@
+{
+  "name": "CategoryRule",
+  "fields": [
+    {
+      "fieldName": "match",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "category",
+      "otherEntityRelationshipName": "categoryRule",
+      "relationshipName": "category",
+      "otherEntityField": "categoryName",
+      "ownerSide": true
+    }
+  ],
+  "entityTableName": "category_rule",
+  "dto": "mapstruct",
+  "pagination": "infinite-scroll",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20220416021212"
+}

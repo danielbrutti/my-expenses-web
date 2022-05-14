@@ -1,0 +1,119 @@
+<div>
+  <h2 id="page-heading" data-cy="AccountRecordHeading">
+    <span jhiTranslate="myExpensesApp.accountRecord.home.title">Account Records</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="myExpensesApp.accountRecord.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button class="btn btn-primary mr-2" (click)="openFilter()">
+        <fa-icon icon="filter"></fa-icon>
+        <span jhiTranslate="filter.btnFilter"> Filtrar </span>
+      </button>
+
+      <button class="btn btn-warning mr-2" (click)="clearFilter()">
+        <fa-icon icon="times"></fa-icon>
+        <span jhiTranslate="filter.btnClear"> Limpiar </span>
+      </button>
+
+      <button id="jh-create-entity" data-cy="entityCreateButton" class="btn btn-success mr-2" (click)="transfer()">
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="myExpensesApp.accountRecord.home.transferLabel"> New Transfer </span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-account-record"
+        [routerLink]="['/account-record/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="myExpensesApp.accountRecord.home.createLabel"> Create a new Account Record </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="accountRecords?.length === 0">
+    <span jhiTranslate="myExpensesApp.accountRecord.home.notFound">No accountRecords found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="accountRecords && accountRecords.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="date">
+            <span jhiTranslate="myExpensesApp.accountRecord.date">Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="amount">
+            <span jhiTranslate="myExpensesApp.accountRecord.amount">Amount</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="type">
+            <span jhiTranslate="myExpensesApp.accountRecord.type">Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="category.categoryName">
+            <span jhiTranslate="myExpensesApp.accountRecord.category">Category</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="account.accountName">
+            <span jhiTranslate="myExpensesApp.accountRecord.account">Account</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let accountRecord of accountRecords; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/account-record', accountRecord.id, 'view']">{{ accountRecord.id }}</a>
+          </td>
+          <td>{{ accountRecord.date | formatMediumDate }}</td>
+          <td>{{ accountRecord.amount }}</td>
+          <td jhiTranslate="{{ 'myExpensesApp.AccountRecordType.' + accountRecord.type }}">{{ accountRecord.type }}</td>
+          <td>
+            <div *ngIf="accountRecord.category">
+              <a [routerLink]="['/category', accountRecord.category?.id, 'view']">{{ accountRecord.category?.categoryName }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="accountRecord.account">
+              <a [routerLink]="['/money-account', accountRecord.account?.id, 'view']">{{ accountRecord.account?.accountName }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/account-record', accountRecord.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/account-record', accountRecord.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(accountRecord)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="moneyAccount">
+      <h2 data-cy="moneyAccountDetailsHeading"><span jhiTranslate="myExpensesApp.moneyAccount.detail.title">Money Account</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ moneyAccount.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="myExpensesApp.moneyAccount.accountName">Account Name</span></dt>
+        <dd>
+          <span>{{ moneyAccount.accountName }}</span>
+        </dd>
+        <dt><span jhiTranslate="myExpensesApp.moneyAccount.initialBalance">Initial Balance</span></dt>
+        <dd>
+          <span>{{ moneyAccount.initialBalance }}</span>
+        </dd>
+        <dt><span jhiTranslate="myExpensesApp.moneyAccount.accountType">Account Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'myExpensesApp.AccountType.' + moneyAccount.accountType }}">{{ moneyAccount.accountType }}</span>
+        </dd>
+        <dt><span jhiTranslate="myExpensesApp.moneyAccount.currency">Currency</span></dt>
+        <dd>
+          <div *ngIf="moneyAccount.currency">
+            <a [routerLink]="['/currency', moneyAccount.currency?.id, 'view']">{{ moneyAccount.currency?.currencyName }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/money-account', moneyAccount.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

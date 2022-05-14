@@ -1,0 +1,35 @@
+{
+  "myExpensesApp": {
+    "accountRecord": {
+      "home": {
+        "title": "Account Records",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Nuevo Registro",
+        "transferLabel": "Nueva Transferencia",
+        "createOrEditLabel": "Crear o editar Account Record",
+        "notFound": "Ningún Account Records encontrado"
+      },
+      "created": "Un nuevo Account Record ha sido creado con el identificador {{ param }}",
+      "updated": "Un Account Record ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Account Record ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Account Record {{ id }}?"
+      },
+      "detail": {
+        "title": "Account Record"
+      },
+      "id": "ID",
+      "date": "Date",
+      "amount": "Amount",
+      "type": "Type",
+      "category": "Category",
+      "account": "Account",
+      "accountTo": "Account To",
+      "accountFrom": "Account From",
+      "validate": {
+        "invalidCurrency": "Las dos cuentas deben tener la misma moneda",
+        "invalidSameAccount": "La cuenta de origen y destino deben ser distintas"
+      }
+    }
+  }
+}

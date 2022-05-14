@@ -1,0 +1,41 @@
+version: '3.8'
+networks:
+  # To create this network in your local host
+  # Change the subnet and gateway configuration if your LOCAL
+  # network is making use of 192.168.10.0 network
+  docker-myexpenses:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.20.0/24
+          gateway: 192.168.20.1
+services:
+  myexpenses:
+    networks:
+    - docker-myexpenses
+    restart: always
+    build: ../
+    container_name: myexpenses-app
+    environment:
+      - DATABASE_PORT=192.168.20.1
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=root
+    ports:
+      - '4000:8081'
+  metabase:
+    networks:
+    - docker-myexpenses
+    image: metabase/metabase
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+        - ./metabase:/metabase
+        - ./metabase-data:/metabase-data
+    environment:
+      MB_DB_TYPE: mysql
+      MB_DB_DBNAME: myexpenses_metabase
+      MB_DB_PORT: 3306
+      MB_DB_USER: root
+      MB_DB_PASS: root
+      MB_DB_HOST: 192.168.20.1

@@ -1,0 +1,74 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ 'filter.title' | translate }}</h4>
+  <button type="button" class="btn btn-dark" aria-label="Close" (click)="activeModal.dismiss()">
+    <fa-icon icon="times"></fa-icon>
+  </button>
+</div>
+
+<div class="modal-body">
+  <form [formGroup]="validateForm" class="scrollBelow">
+    <ng-container *ngFor="let field of fields">
+      <ng-container [ngSwitch]="field.type">
+        <!-- Alphanumeric -->
+        <div class="form-group" *ngSwitchCase="'string'">
+          <label class="form-control-label" [for]="field.attribute">{{ field.name }}</label>
+          <input type="text" [formControlName]="field.attribute" [name]="field.attribute" />
+        </div>
+
+        <!-- Dropdown -->
+        <div class="form-group" *ngSwitchCase="'dropdown'">
+          <label class="form-control-label" [for]="field.attribute">{{ field.name }}</label>
+          <select class="form-control" [formControlName]="field.attribute" [name]="field.attribute">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let x of field.options | async" [value]="x[field.optionId]">
+              {{ x[field.optionValue] }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Date Range -->
+        <ng-container *ngSwitchCase="'daterange'">
+          <div class="col-12">
+            <div class="input-group">
+              <input
+                class="form-control"
+                placeholder="yyyy-mm-dd"
+                name="{{ field.attribute }}_from"
+                formControlName="{{ field.attribute }}_from"
+                ngbDatepicker
+                #from="ngbDatepicker"
+              />
+              <button class="btn btn-outline-secondary calendar" (click)="from.toggle()" type="button"></button>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="input-group">
+              <input
+                class="form-control"
+                placeholder="yyyy-mm-dd"
+                name="{{ field.attribute }}_to"
+                formControlName="{{ field.attribute }}_to"
+                ngbDatepicker
+                #to="ngbDatepicker"
+              />
+              <button class="btn btn-outline-secondary calendar" (click)="to.toggle()" type="button"></button>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-warning" (click)="clear()">
+    {{ 'filter.btnClear' | translate }}
+  </button>
+  <button type="button" class="btn btn-danger" (click)="activeModal.close()">
+    {{ 'filter.btnCancel' | translate }}
+  </button>
+  <button type="button" class="btn btn-primary" (click)="confirm()">
+    {{ 'filter.btnApply' | translate }}
+  </button>
+</div>

@@ -1,0 +1,28 @@
+{
+  "myExpensesApp": {
+    "moneyAccount": {
+      "home": {
+        "title": "Money Accounts",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Money Account",
+        "createOrEditLabel": "Crear o editar Money Account",
+        "notFound": "Ningún Money Accounts encontrado"
+      },
+      "created": "Un nuevo Money Account ha sido creado con el identificador {{ param }}",
+      "updated": "Un Money Account ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Money Account ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Money Account {{ id }}?"
+      },
+      "detail": {
+        "title": "Money Account"
+      },
+      "id": "ID",
+      "accountName": "Account Name",
+      "initialBalance": "Initial Balance",
+      "accountType": "Account Type",
+      "accountRecord": "Account Record",
+      "currency": "Currency"
+    }
+  }
+}

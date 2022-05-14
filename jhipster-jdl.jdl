@@ -15,6 +15,7 @@ entity AccountRecord {
 	date LocalDate
 	amount BigDecimal
     type AccountRecordType
+	notes String
 }
 
 entity Category {
@@ -24,6 +25,16 @@ entity Category {
 
 entity CategoryRule {
 	match String
+}
+
+entity Budget {
+	yearMonth String
+	year Integer
+	month Integer
+}
+
+entity BudgetItem {
+	amount BigDecimal
 }
 
 enum AccountType {
@@ -40,16 +51,18 @@ enum AccountRecordType {
 }
 
 relationship OneToMany {
-	MoneyAccount to AccountRecord{account}
+	MoneyAccount to AccountRecord{account(accountName)}
+	Budget to BudgetItem{budget(yearMonth)}
 }
 
 relationship OneToOne {
-    CategoryRule{category} to Category
+    CategoryRule{category(categoryName)} to Category
 }
 
 relationship ManyToOne {
-	MoneyAccount{currency} to Currency,
-    AccountRecord{category} to Category
+	MoneyAccount{currency(currencyName)} to Currency
+    AccountRecord{category(categoryName)} to Category
+	BudgetItem{category(categoryName)} to Category
 }
 
 paginate * with infinite-scroll
