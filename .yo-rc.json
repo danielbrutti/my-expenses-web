@@ -52,6 +52,6 @@
     "reactive": false,
     "entities": ["MoneyAccount", "Currency", "AccountRecord", "Category", "CategoryRule", "Budget", "BudgetItem"],
     "lastLiquibaseTimestamp": 1652490341000,
-    "appFolder": "my-expense-nodejs"
+    "appFolder": "my-expenses-web"
   }
 }

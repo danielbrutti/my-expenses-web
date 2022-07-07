@@ -1,6 +1,6 @@
 {
   "generator-jhipster": {
-    "appsFolders": ["my-expense-nodejs"],
+    "appsFolders": ["my-expenses-web"],
     "directoryPath": "../../",
     "monitoring": "no",
     "serviceDiscoveryType": false,
