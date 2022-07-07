@@ -37,6 +37,11 @@
             <option value="EXPENSE">{{ 'myExpensesApp.CategoryType.EXPENSE' | translate }}</option>
           </select>
         </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="myExpensesApp.category.notes" for="field_notes">Notes</label>
+          <input type="text" class="form-control" name="notes" id="field_notes" data-cy="notes" formControlName="notes" />
+        </div>
       </div>
 
       <div>

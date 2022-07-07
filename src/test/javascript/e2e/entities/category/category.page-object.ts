@@ -32,6 +32,7 @@ export class CategoryUpdatePage {
   idInput = element(by.id('field_id'));
   categoryNameInput = element(by.id('field_categoryName'));
   categoryTypeSelect = element(by.id('field_categoryType'));
+  notesInput = element(by.id('field_notes'));
 
   async getPageTitle(): Promise<string> {
     return this.pageTitle.getAttribute('jhiTranslate');
@@ -63,6 +64,14 @@ export class CategoryUpdatePage {
 
   async categoryTypeSelectLastOption(): Promise<void> {
     await this.categoryTypeSelect.all(by.tagName('option')).last().click();
+  }
+
+  async setNotesInput(notes: string): Promise<void> {
+    await this.notesInput.sendKeys(notes);
+  }
+
+  async getNotesInput(): Promise<string> {
+    return await this.notesInput.getAttribute('value');
   }
 
   async save(): Promise<void> {

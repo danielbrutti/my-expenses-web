@@ -26,6 +26,10 @@
         <dd>
           <span jhiTranslate="{{ 'myExpensesApp.AccountRecordType.' + accountRecord.type }}">{{ accountRecord.type }}</span>
         </dd>
+        <dt><span jhiTranslate="myExpensesApp.accountRecord.notes">Notes</span></dt>
+        <dd>
+          <span>{{ accountRecord.notes }}</span>
+        </dd>
         <dt><span jhiTranslate="myExpensesApp.accountRecord.category">Category</span></dt>
         <dd>
           <div *ngIf="accountRecord.category">

@@ -30,6 +30,7 @@ describe('Service Tests', () => {
         date: currentDate,
         amount: 0,
         type: AccountRecordType.INCOME,
+        notes: 'AAAAAAA',
       };
     });
 
@@ -79,6 +80,7 @@ describe('Service Tests', () => {
             date: currentDate.format(DATE_FORMAT),
             amount: 1,
             type: 'BBBBBB',
+            notes: 'BBBBBB',
           },
           elemDefault
         );
@@ -129,6 +131,7 @@ describe('Service Tests', () => {
             date: currentDate.format(DATE_FORMAT),
             amount: 1,
             type: 'BBBBBB',
+            notes: 'BBBBBB',
           },
           elemDefault
         );
@@ -185,7 +188,7 @@ describe('Service Tests', () => {
         });
 
         it('should add only unique AccountRecord to an array', () => {
-          const accountRecordArray: IAccountRecord[] = [{ id: 123 }, { id: 456 }, { id: 5735 }];
+          const accountRecordArray: IAccountRecord[] = [{ id: 123 }, { id: 456 }, { id: 46691 }];
           const accountRecordCollection: IAccountRecord[] = [{ id: 123 }];
           expectedResult = service.addAccountRecordToCollectionIfMissing(accountRecordCollection, ...accountRecordArray);
           expect(expectedResult).toHaveLength(3);

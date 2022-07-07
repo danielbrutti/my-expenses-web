@@ -42,12 +42,17 @@ describe('Category e2e test', () => {
 
     await categoryComponentsPage.clickOnCreateButton();
 
-    await promise.all([categoryUpdatePage.setCategoryNameInput('categoryName'), categoryUpdatePage.categoryTypeSelectLastOption()]);
+    await promise.all([
+      categoryUpdatePage.setCategoryNameInput('categoryName'),
+      categoryUpdatePage.categoryTypeSelectLastOption(),
+      categoryUpdatePage.setNotesInput('notes'),
+    ]);
 
     expect(await categoryUpdatePage.getCategoryNameInput()).to.eq(
       'categoryName',
       'Expected CategoryName value to be equals to categoryName'
     );
+    expect(await categoryUpdatePage.getNotesInput()).to.eq('notes', 'Expected Notes value to be equals to notes');
 
     await categoryUpdatePage.save();
     expect(await categoryUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;

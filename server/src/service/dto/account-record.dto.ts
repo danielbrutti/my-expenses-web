@@ -19,6 +19,9 @@ export class AccountRecordDTO extends BaseDTO {
     @ApiModelProperty({ enum: AccountRecordType, description: 'type enum field', required: false })
     type: AccountRecordType;
 
+    @ApiModelProperty({ description: 'notes field', required: false })
+    notes: string;
+
     @ApiModelProperty({ type: CategoryDTO, description: 'category relationship' })
     category: CategoryDTO;
 

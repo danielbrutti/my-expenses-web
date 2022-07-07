@@ -29,8 +29,7 @@ entity CategoryRule {
 
 entity Budget {
 	yearMonth String
-	year Integer
-	month Integer
+	date LocalDate
 }
 
 entity BudgetItem {

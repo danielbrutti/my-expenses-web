@@ -20,7 +20,6 @@ import { AuthGuard, Roles, RolesGuard, RoleType } from '../../security';
 import { HeaderUtil } from '../../client/header-util';
 import { Request } from '../../client/request';
 import { LoggingInterceptor } from '../../client/interceptors/logging.interceptor';
-import { AccountRecordType } from '../../domain/enumeration/account-record-type';
 
 @Controller('api/account-records')
 @UseGuards(AuthGuard, RolesGuard)

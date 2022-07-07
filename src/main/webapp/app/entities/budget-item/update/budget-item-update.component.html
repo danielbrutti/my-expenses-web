@@ -1,0 +1,91 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-budget-item-heading"
+        data-cy="BudgetItemCreateUpdateHeading"
+        jhiTranslate="myExpensesApp.budgetItem.home.createOrEditLabel"
+      >
+        Create or edit a Budget Item
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="myExpensesApp.budgetItem.budget" for="field_budget">Budget</label>
+          <select class="form-control" id="field_budget" data-cy="budget" name="budget" formControlName="budget">
+            <option *ngIf="!editForm.get('budget')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="budgetOption.id === editForm.get('budget')!.value?.id ? editForm.get('budget')!.value : budgetOption"
+              *ngFor="let budgetOption of budgetsSharedCollection; trackBy: trackBudgetById"
+            >
+              {{ budgetOption.yearMonth }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['budget'])!.invalid && (editForm.get(['budget'])!.dirty || editForm.get(['budget'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['budget'])?.errors?.required" jhiTranslate="entity.validation.required">
+            This field is required.
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="myExpensesApp.budgetItem.category" for="field_category">Category</label>
+          <select class="form-control" id="field_category" data-cy="category" name="category" formControlName="category">
+            <option *ngIf="!editForm.get('category')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="categoryOption.id === editForm.get('category')!.value?.id ? editForm.get('category')!.value : categoryOption"
+              *ngFor="let categoryOption of categoriesSharedCollection; trackBy: trackCategoryById"
+            >
+              {{ categoryOption.categoryName }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['category'])!.invalid && (editForm.get(['category'])!.dirty || editForm.get(['category'])!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['category'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="myExpensesApp.budgetItem.amount" for="field_amount">Amount</label>
+          <input type="number" class="form-control" name="amount" id="field_amount" data-cy="amount" formControlName="amount" />
+          <div *ngIf="editForm.get('amount')!.invalid && (editForm.get('amount')!.dirty || editForm.get('amount')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('amount')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('amount')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

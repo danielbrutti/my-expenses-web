@@ -50,8 +50,8 @@
     "buildTool": "maven",
     "enableHibernateCache": true,
     "reactive": false,
-    "entities": ["MoneyAccount", "Currency", "AccountRecord", "Category", "CategoryRule"],
-    "lastLiquibaseTimestamp": 1650075132000,
+    "entities": ["MoneyAccount", "Currency", "AccountRecord", "Category", "CategoryRule", "Budget", "BudgetItem"],
+    "lastLiquibaseTimestamp": 1652490341000,
     "appFolder": "my-expense-nodejs"
   }
 }

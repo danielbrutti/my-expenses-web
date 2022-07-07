@@ -30,6 +30,7 @@ export class AccountRecordUpdateComponent implements OnInit {
     date: [],
     amount: [],
     type: [],
+    notes: [],
     category: [],
     account: [],
   });
@@ -97,6 +98,7 @@ export class AccountRecordUpdateComponent implements OnInit {
       date: accountRecord.date ?? dayjs(),
       amount: accountRecord.amount,
       type: accountRecord.type ?? AccountRecordType.EXPENSE.toString(),
+      notes: accountRecord.notes,
       category: accountRecord.category,
       account: accountRecord.account,
     });
@@ -113,9 +115,8 @@ export class AccountRecordUpdateComponent implements OnInit {
 
   protected loadRelationshipsOptions(): void {
     this.categoryService
-      .query({
-        size: 100,
-        sort: ['categoryName, ASC'],
+      .queryAll({
+        sort: ['categoryName', 'asc'],
       })
       .pipe(map((res: HttpResponse<ICategory[]>) => res.body ?? []))
       .pipe(
@@ -146,6 +147,7 @@ export class AccountRecordUpdateComponent implements OnInit {
       date: this.editForm.get(['date'])!.value,
       amount: this.editForm.get(['amount'])!.value,
       type: this.editForm.get(['type'])!.value,
+      notes: this.editForm.get(['notes'])!.value,
       category: this.editForm.get(['category'])!.value,
       account: this.editForm.get(['account'])!.value,
     };

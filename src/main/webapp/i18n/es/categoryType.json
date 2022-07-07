@@ -2,8 +2,8 @@
   "myExpensesApp": {
     "CategoryType": {
       "null": "",
-      "INCOME": "Ingreso",
-      "EXPENSE": "Gasto"
+      "INCOME": "INCOME",
+      "EXPENSE": "EXPENSE"
     }
   }
 }

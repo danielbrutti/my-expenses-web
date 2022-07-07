@@ -49,12 +49,14 @@ describe('AccountRecord e2e test', () => {
       accountRecordUpdatePage.setDateInput('2000-12-31'),
       accountRecordUpdatePage.setAmountInput('5'),
       accountRecordUpdatePage.typeSelectLastOption(),
+      accountRecordUpdatePage.setNotesInput('notes'),
       accountRecordUpdatePage.categorySelectLastOption(),
       accountRecordUpdatePage.accountSelectLastOption(),
     ]);
 
     expect(await accountRecordUpdatePage.getDateInput()).to.eq('2000-12-31', 'Expected date value to be equals to 2000-12-31');
     expect(await accountRecordUpdatePage.getAmountInput()).to.eq('5', 'Expected amount value to be equals to 5');
+    expect(await accountRecordUpdatePage.getNotesInput()).to.eq('notes', 'Expected Notes value to be equals to notes');
 
     await accountRecordUpdatePage.save();
     expect(await accountRecordUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;

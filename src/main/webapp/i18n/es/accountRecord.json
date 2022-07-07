@@ -22,6 +22,7 @@
       "date": "Date",
       "amount": "Amount",
       "type": "Type",
+      "notes": "Notes",
       "category": "Category",
       "account": "Account",
       "accountTo": "Account To",

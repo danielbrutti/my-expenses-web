@@ -2,10 +2,10 @@
   "myExpensesApp": {
     "AccountRecordType": {
       "null": "",
-      "INCOME": "Ingreso",
-      "EXPENSE": "Gasto",
-      "DEPOSIT": "Depósito",
-      "WITHDRAW": "Retiro"
+      "INCOME": "INCOME",
+      "EXPENSE": "EXPENSE",
+      "DEPOSIT": "DEPOSIT",
+      "WITHDRAW": "WITHDRAW"
     }
   }
 }

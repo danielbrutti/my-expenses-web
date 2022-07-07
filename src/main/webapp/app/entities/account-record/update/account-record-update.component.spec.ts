@@ -46,10 +46,10 @@ describe('Component Tests', () => {
     describe('ngOnInit', () => {
       it('Should call Category query and add missing value', () => {
         const accountRecord: IAccountRecord = { id: 456 };
-        const category: ICategory = { id: 5599 };
+        const category: ICategory = { id: 73809 };
         accountRecord.category = category;
 
-        const categoryCollection: ICategory[] = [{ id: 73560 }];
+        const categoryCollection: ICategory[] = [{ id: 19202 }];
         spyOn(categoryService, 'query').and.returnValue(of(new HttpResponse({ body: categoryCollection })));
         const additionalCategories = [category];
         const expectedCollection: ICategory[] = [...additionalCategories, ...categoryCollection];
@@ -65,10 +65,10 @@ describe('Component Tests', () => {
 
       it('Should call MoneyAccount query and add missing value', () => {
         const accountRecord: IAccountRecord = { id: 456 };
-        const account: IMoneyAccount = { id: 28818 };
+        const account: IMoneyAccount = { id: 16775 };
         accountRecord.account = account;
 
-        const moneyAccountCollection: IMoneyAccount[] = [{ id: 4369 }];
+        const moneyAccountCollection: IMoneyAccount[] = [{ id: 98933 }];
         spyOn(moneyAccountService, 'query').and.returnValue(of(new HttpResponse({ body: moneyAccountCollection })));
         const additionalMoneyAccounts = [account];
         const expectedCollection: IMoneyAccount[] = [...additionalMoneyAccounts, ...moneyAccountCollection];
@@ -87,9 +87,9 @@ describe('Component Tests', () => {
 
       it('Should update editForm', () => {
         const accountRecord: IAccountRecord = { id: 456 };
-        const category: ICategory = { id: 96845 };
+        const category: ICategory = { id: 29014 };
         accountRecord.category = category;
-        const account: IMoneyAccount = { id: 32351 };
+        const account: IMoneyAccount = { id: 65516 };
         accountRecord.account = account;
 
         activatedRoute.data = of({ accountRecord });

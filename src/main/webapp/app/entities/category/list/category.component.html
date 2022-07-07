@@ -39,6 +39,9 @@
           <th scope="col" jhiSortBy="categoryType">
             <span jhiTranslate="myExpensesApp.category.categoryType">Category Type</span> <fa-icon icon="sort"></fa-icon>
           </th>
+          <th scope="col" jhiSortBy="notes">
+            <span jhiTranslate="myExpensesApp.category.notes">Notes</span> <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -49,6 +52,7 @@
           </td>
           <td>{{ category.categoryName }}</td>
           <td jhiTranslate="{{ 'myExpensesApp.CategoryType.' + category.categoryType }}">{{ category.categoryType }}</td>
+          <td>{{ category.notes }}</td>
           <td class="text-right">
             <div class="btn-group">
               <button

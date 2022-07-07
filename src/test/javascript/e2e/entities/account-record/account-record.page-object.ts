@@ -33,6 +33,7 @@ export class AccountRecordUpdatePage {
   dateInput = element(by.id('field_date'));
   amountInput = element(by.id('field_amount'));
   typeSelect = element(by.id('field_type'));
+  notesInput = element(by.id('field_notes'));
 
   categorySelect = element(by.id('field_category'));
   accountSelect = element(by.id('field_account'));
@@ -75,6 +76,14 @@ export class AccountRecordUpdatePage {
 
   async typeSelectLastOption(): Promise<void> {
     await this.typeSelect.all(by.tagName('option')).last().click();
+  }
+
+  async setNotesInput(notes: string): Promise<void> {
+    await this.notesInput.sendKeys(notes);
+  }
+
+  async getNotesInput(): Promise<string> {
+    return await this.notesInput.getAttribute('value');
   }
 
   async categorySelectLastOption(): Promise<void> {

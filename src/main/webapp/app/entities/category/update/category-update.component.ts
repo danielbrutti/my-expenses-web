@@ -19,6 +19,7 @@ export class CategoryUpdateComponent implements OnInit {
     id: [],
     categoryName: [],
     categoryType: [],
+    notes: [],
   });
 
   constructor(protected categoryService: CategoryService, protected activatedRoute: ActivatedRoute, protected fb: FormBuilder) {}
@@ -67,6 +68,7 @@ export class CategoryUpdateComponent implements OnInit {
       id: category.id,
       categoryName: category.categoryName,
       categoryType: category.categoryType,
+      notes: category.notes,
     });
   }
 
@@ -76,6 +78,7 @@ export class CategoryUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       categoryName: this.editForm.get(['categoryName'])!.value,
       categoryType: this.editForm.get(['categoryType'])!.value,
+      notes: this.editForm.get(['notes'])!.value,
     };
   }
 }

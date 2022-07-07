@@ -19,7 +19,8 @@
       },
       "id": "ID",
       "categoryName": "Category Name",
-      "categoryType": "Category Type"
+      "categoryType": "Category Type",
+      "notes": "Notes"
     }
   }
 }

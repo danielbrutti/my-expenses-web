@@ -14,5 +14,8 @@ export class CategoryDTO extends BaseDTO {
     @ApiModelProperty({ enum: CategoryType, description: 'categoryType enum field', required: false })
     categoryType: CategoryType;
 
+    @ApiModelProperty({ description: 'notes field', required: false })
+    notes: string;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 }

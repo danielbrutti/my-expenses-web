@@ -15,5 +15,8 @@ export class Category extends BaseEntity {
     @Column({ type: 'simple-enum', name: 'category_type', enum: CategoryType })
     categoryType: CategoryType;
 
+    @Column({ name: 'notes', nullable: true })
+    notes: string;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 }

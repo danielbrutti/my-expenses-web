@@ -1,0 +1,44 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="budgetItem">
+      <h2 data-cy="budgetItemDetailsHeading"><span jhiTranslate="myExpensesApp.budgetItem.detail.title">Budget Item</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ budgetItem.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="myExpensesApp.budgetItem.amount">Amount</span></dt>
+        <dd>
+          <span>{{ budgetItem.amount }}</span>
+        </dd>
+        <dt><span jhiTranslate="myExpensesApp.budgetItem.budget">Budget</span></dt>
+        <dd>
+          <div *ngIf="budgetItem.budget">
+            <a [routerLink]="['/budget', budgetItem.budget?.id, 'view']">{{ budgetItem.budget?.yearMonth }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="myExpensesApp.budgetItem.category">Category</span></dt>
+        <dd>
+          <div *ngIf="budgetItem.category">
+            <a [routerLink]="['/category', budgetItem.category?.id, 'view']">{{ budgetItem.category?.categoryName }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/budget-item', budgetItem.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

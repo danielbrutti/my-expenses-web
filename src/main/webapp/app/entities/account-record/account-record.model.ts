@@ -8,6 +8,7 @@ export interface IAccountRecord {
   date?: dayjs.Dayjs | null;
   amount?: number | null;
   type?: AccountRecordType | null;
+  notes?: string | null;
   category?: ICategory | null;
   account?: IMoneyAccount | null;
 }
@@ -18,6 +19,7 @@ export class AccountRecord implements IAccountRecord {
     public date?: dayjs.Dayjs | null,
     public amount?: number | null,
     public type?: AccountRecordType | null,
+    public notes?: string | null,
     public category?: ICategory | null,
     public account?: IMoneyAccount | null
   ) {}

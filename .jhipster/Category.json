@@ -9,6 +9,10 @@
       "fieldName": "categoryType",
       "fieldType": "CategoryType",
       "fieldValues": "INCOME,EXPENSE"
+    },
+    {
+      "fieldName": "notes",
+      "fieldType": "String"
     }
   ],
   "relationships": [],

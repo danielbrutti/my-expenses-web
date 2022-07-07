@@ -1,0 +1,26 @@
+{
+  "myExpensesApp": {
+    "budgetItem": {
+      "home": {
+        "title": "Budget Items",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Budget Item",
+        "createOrEditLabel": "Crear o editar Budget Item",
+        "notFound": "Ningún Budget Items encontrado"
+      },
+      "created": "Un nuevo Budget Item ha sido creado con el identificador {{ param }}",
+      "updated": "Un Budget Item ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Budget Item ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Budget Item {{ id }}?"
+      },
+      "detail": {
+        "title": "Budget Item"
+      },
+      "id": "ID",
+      "amount": "Amount",
+      "budget": "Budget",
+      "category": "Category"
+    }
+  }
+}

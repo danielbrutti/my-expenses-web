@@ -34,6 +34,11 @@ export class CategoryService {
     return this.http.get<ICategory>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
+  queryAll(req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http.get<ICategory[]>(`${this.resourceUrl}/all`, { params: options, observe: 'response' });
+  }
+
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http.get<ICategory[]>(this.resourceUrl, { params: options, observe: 'response' });

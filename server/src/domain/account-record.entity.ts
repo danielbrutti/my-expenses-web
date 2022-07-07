@@ -20,6 +20,9 @@ export class AccountRecord extends BaseEntity {
     @Column({ type: 'simple-enum', name: 'type', enum: AccountRecordType })
     type: AccountRecordType;
 
+    @Column({ name: 'notes', nullable: true })
+    notes: string;
+
     @ManyToOne((type) => Category)
     category: Category;
 

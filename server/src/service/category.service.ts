@@ -24,6 +24,17 @@ export class CategoryService {
         return CategoryMapper.fromEntityToDTO(result);
     }
 
+    async findAll(options: FindManyOptions<CategoryDTO>): Promise<[CategoryDTO[], number]> {
+        options.relations = relationshipNames;
+        const resultList = await this.categoryRepository.findAndCount(options);
+        const categoryDTO: CategoryDTO[] = [];
+        if (resultList && resultList[0]) {
+            resultList[0].forEach((category) => categoryDTO.push(CategoryMapper.fromEntityToDTO(category)));
+            resultList[0] = categoryDTO;
+        }
+        return resultList;
+    }
+
     async findAndCount(options: FindManyOptions<CategoryDTO>): Promise<[CategoryDTO[], number]> {
         options.relations = relationshipNames;
         const resultList = await this.categoryRepository.findAndCount(options);

@@ -25,6 +25,7 @@ describe('Service Tests', () => {
         id: 0,
         categoryName: 'AAAAAAA',
         categoryType: CategoryType.INCOME,
+        notes: 'AAAAAAA',
       };
     });
 
@@ -62,6 +63,7 @@ describe('Service Tests', () => {
             id: 1,
             categoryName: 'BBBBBB',
             categoryType: 'BBBBBB',
+            notes: 'BBBBBB',
           },
           elemDefault
         );
@@ -95,6 +97,7 @@ describe('Service Tests', () => {
             id: 1,
             categoryName: 'BBBBBB',
             categoryType: 'BBBBBB',
+            notes: 'BBBBBB',
           },
           elemDefault
         );
@@ -146,7 +149,7 @@ describe('Service Tests', () => {
         });
 
         it('should add only unique Category to an array', () => {
-          const categoryArray: ICategory[] = [{ id: 123 }, { id: 456 }, { id: 43896 }];
+          const categoryArray: ICategory[] = [{ id: 123 }, { id: 456 }, { id: 47527 }];
           const categoryCollection: ICategory[] = [{ id: 123 }];
           expectedResult = service.addCategoryToCollectionIfMissing(categoryCollection, ...categoryArray);
           expect(expectedResult).toHaveLength(3);

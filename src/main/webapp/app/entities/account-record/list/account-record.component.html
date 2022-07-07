@@ -57,6 +57,9 @@
           <th scope="col" jhiSortBy="type">
             <span jhiTranslate="myExpensesApp.accountRecord.type">Type</span> <fa-icon icon="sort"></fa-icon>
           </th>
+          <th scope="col" jhiSortBy="notes">
+            <span jhiTranslate="myExpensesApp.accountRecord.notes">Notes</span> <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col" jhiSortBy="category.categoryName">
             <span jhiTranslate="myExpensesApp.accountRecord.category">Category</span> <fa-icon icon="sort"></fa-icon>
           </th>
@@ -74,6 +77,7 @@
           <td>{{ accountRecord.date | formatMediumDate }}</td>
           <td>{{ accountRecord.amount }}</td>
           <td jhiTranslate="{{ 'myExpensesApp.AccountRecordType.' + accountRecord.type }}">{{ accountRecord.type }}</td>
+          <td>{{ accountRecord.notes }}</td>
           <td>
             <div *ngIf="accountRecord.category">
               <a [routerLink]="['/category', accountRecord.category?.id, 'view']">{{ accountRecord.category?.categoryName }}</a>
