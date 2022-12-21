@@ -96,7 +96,9 @@ export class MoneyAccountUpdateComponent implements OnInit {
 
   protected loadRelationshipsOptions(): void {
     this.currencyService
-      .query()
+      .queryAll({
+        sort: ['currencyName', 'asc'],
+      })
       .pipe(map((res: HttpResponse<ICurrency[]>) => res.body ?? []))
       .pipe(
         map((currencies: ICurrency[]) =>

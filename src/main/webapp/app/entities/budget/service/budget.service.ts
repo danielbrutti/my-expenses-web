@@ -33,6 +33,13 @@ export class BudgetService {
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
+  copy(budget: IBudget): Observable<EntityResponseType> {
+    const copy = this.convertDateFromClient(budget);
+    return this.http
+      .post<IBudget>(`${this.resourceUrl}/${getBudgetIdentifier(budget) as number}/copy`, copy, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
   partialUpdate(budget: IBudget): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(budget);
     return this.http
@@ -44,6 +51,11 @@ export class BudgetService {
     return this.http
       .get<IBudget>(`${this.resourceUrl}/${id}`, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
+  queryAll(req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http.get<IBudget[]>(`${this.resourceUrl}/all`, { params: options, observe: 'response' });
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {

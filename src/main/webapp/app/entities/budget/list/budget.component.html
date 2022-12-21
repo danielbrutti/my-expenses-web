@@ -59,6 +59,11 @@
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
               </button>
 
+              <button type="submit" (click)="copy(budget)" class="btn btn-warning btn-sm" data-cy="entityCopyButton">
+                <fa-icon icon="copy"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.copy">Copy</span>
+              </button>
+
               <button type="submit" (click)="delete(budget)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>

@@ -11,8 +11,12 @@
       "created": "Un nuevo Budget ha sido creado con el identificador {{ param }}",
       "updated": "Un Budget ha sido actualizado con el identificador {{ param }}",
       "deleted": "Un Budget ha sido eliminado con el identificador {{ param }}",
+      "copied": "Un Budget ha sido copiado con el identificador {{ param }}",
       "delete": {
         "question": "¿Seguro que quiere eliminar Budget {{ id }}?"
+      },
+      "copy": {
+        "question": "¿Seguro que quiere copiar Budget {{ id }}?"
       },
       "detail": {
         "title": "Budget"

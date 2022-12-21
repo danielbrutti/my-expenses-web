@@ -8,6 +8,7 @@ import { ITEMS_PER_PAGE } from 'app/config/pagination.constants';
 import { CategoryRuleService } from '../service/category-rule.service';
 import { CategoryRuleDeleteDialogComponent } from '../delete/category-rule-delete-dialog.component';
 import { ParseLinks } from 'app/core/util/parse-links.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'jhi-category-rule',

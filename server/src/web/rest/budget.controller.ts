@@ -49,6 +49,20 @@ export class BudgetController {
         return results;
     }
 
+    @Get('/all')
+    @Roles(RoleType.USER)
+    @ApiResponse({
+        status: 200,
+        description: 'List all records without pagination',
+        type: BudgetDTO,
+    })
+    async getAllNotPaginated(@Req() req: Request): Promise<BudgetDTO[]> {
+        const pageRequest: PageRequest = new PageRequest(req.query.page, req.query.size, req.query.sort);
+        const [results, count] = await this.budgetService.findAndCount({order: pageRequest.sort.asOrder()});
+        HeaderUtil.addPaginationHeaders(req.res, new Page(results, count, pageRequest));
+        return results;
+    }
+
     @Get('/:id')
     @Roles(RoleType.USER)
     @ApiResponse({
@@ -73,6 +87,22 @@ export class BudgetController {
         const created = await this.budgetService.save(budgetDTO, req.user?.login);
         HeaderUtil.addEntityCreatedHeaders(req.res, 'Budget', created.id);
         return created;
+    }
+
+    @PostMethod('/:id/copy')
+    @Roles(RoleType.ADMIN)
+    @ApiOperation({ title: 'Copy budget with id' })
+    @ApiResponse({
+        status: 201,
+        description: 'The record has been successfully copied.',
+        type: BudgetDTO,
+    })
+    @ApiResponse({ status: 403, description: 'Forbidden.' })
+    async copyId(@Req() req: Request, @Body() budgetDTO: BudgetDTO): Promise<BudgetDTO> {
+        const copy =  await this.budgetService.copy(budgetDTO, req.user?.login);
+        HeaderUtil.addEntityCreatedHeaders(req.res, 'Budget', copy.id);
+        return copy;
+        
     }
 
     @Put('/')

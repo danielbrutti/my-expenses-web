@@ -129,7 +129,7 @@ export class AccountRecordUpdateComponent implements OnInit {
     this.moneyAccountService
       .query({
         size: 100,
-        sort: ['accountType, ASC'],
+        sort: ['accountType, asc'],
       })
       .pipe(map((res: HttpResponse<IMoneyAccount[]>) => res.body ?? []))
       .pipe(

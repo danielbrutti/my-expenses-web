@@ -36,6 +36,11 @@ export class BudgetItemService {
     return this.http.get<IBudgetItem>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
+  queryAll(req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http.get<IBudgetItem[]>(`${this.resourceUrl}/all`, { params: options, observe: 'response' });
+  }
+
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http.get<IBudgetItem[]>(this.resourceUrl, { params: options, observe: 'response' });

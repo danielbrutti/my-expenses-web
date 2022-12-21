@@ -50,6 +50,20 @@ export class AccountRecordController {
         return results;
     }
 
+    @Get('/all')
+    @Roles(RoleType.USER)
+    @ApiResponse({
+        status: 200,
+        description: 'List all records without pagination',
+        type: AccountRecordDTO,
+    })
+    async getAllNotPaginated(@Req() req: Request): Promise<AccountRecordDTO[]> {
+        const pageRequest: PageRequest = new PageRequest(req.query.page, req.query.size, req.query.sort);
+        const [results, count] = await this.accountRecordService.findAndCount({order: pageRequest.sort.asOrder()});
+        HeaderUtil.addPaginationHeaders(req.res, new Page(results, count, pageRequest));
+        return results;
+    }
+
     @Get('/:id')
     @Roles(RoleType.USER)
     @ApiResponse({

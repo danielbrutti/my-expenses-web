@@ -4,6 +4,11 @@ import { FindManyOptions, FindOneOptions } from 'typeorm';
 import { BudgetDTO } from '../service/dto/budget.dto';
 import { BudgetMapper } from '../service/mapper/budget.mapper';
 import { BudgetRepository } from '../repository/budget.repository';
+import { BudgetItemRepository } from '../repository/budget-item.repository';
+import { BudgetItem } from '../domain/budget-item.entity';
+import { BudgetItemService } from './budget-item.service';
+import { BudgetItemMapper } from './mapper/budget-item.mapper';
+import { BudgetItemDTO } from './dto/budget-item.dto';
 
 const relationshipNames = [];
 
@@ -11,7 +16,10 @@ const relationshipNames = [];
 export class BudgetService {
     logger = new Logger('BudgetService');
 
-    constructor(@InjectRepository(BudgetRepository) private budgetRepository: BudgetRepository) {}
+    constructor(
+        @InjectRepository(BudgetRepository) private budgetRepository: BudgetRepository,
+        private budgetItemService: BudgetItemService
+    ) { }
 
     async findById(id: number): Promise<BudgetDTO | undefined> {
         const options = { relations: relationshipNames };
@@ -44,6 +52,37 @@ export class BudgetService {
             entity.lastModifiedBy = creator;
         }
         const result = await this.budgetRepository.save(entity);
+        return BudgetMapper.fromEntityToDTO(result);
+    }
+
+    async copy(budgetDTO: BudgetDTO, creator?: string): Promise<BudgetDTO | undefined> {
+        const entity = BudgetMapper.fromDTOtoEntity(budgetDTO);
+        entity.id = null;
+        if (creator) {
+            if (!entity.createdBy) {
+                entity.createdBy = creator;
+            }
+            entity.lastModifiedBy = creator;
+        }
+        const result = await this.budgetRepository.save(entity);
+
+        const items: BudgetItem[] = await this.budgetItemService.findAndCount({
+            join: {
+                alias: "budgetItem",
+                innerJoin: { budget: "budgetItem.budget" }
+            },
+            where: { "budget.id": budgetDTO.id },
+        })[0];
+
+        if (items?.length > 0) {
+            const newItems: BudgetItem[] = items.map(i => Object.assign(new BudgetItem(), i));
+            await newItems.forEach(async(i) => {
+                i.id = null;
+                i.budget = result;
+                await this.budgetItemService.save(BudgetItemMapper.fromEntityToDTO(i));
+            });
+        }
+
         return BudgetMapper.fromEntityToDTO(result);
     }
 

@@ -15,6 +15,7 @@ import { FilterDialogComponent } from '../../../shared/filter-dialog/filter-dial
 import { MoneyAccountService } from '../../money-account/service/money-account.service';
 import { map } from 'rxjs/operators';
 import { CategoryService } from '../../category/service/category.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'jhi-account-record',
@@ -47,7 +48,7 @@ export class AccountRecordComponent implements OnInit {
       name: 'Account',
       attribute: 'account',
       type: 'dropdown',
-      options: this.moneyAccountService.query().pipe(map(res => res.body)),
+      options: this.moneyAccountService.queryAll({ sort: ['accountName', 'asc'] }).pipe(map(res => res.body)),
       optionId: 'id',
       optionValue: 'accountName',
     },
@@ -55,7 +56,7 @@ export class AccountRecordComponent implements OnInit {
       name: 'Category',
       attribute: 'category',
       type: 'dropdown',
-      options: this.categoryService.query().pipe(map(res => res.body)),
+      options: this.categoryService.queryAll({ sort: ['categoryName', 'asc'] }).pipe(map(res => res.body)),
       optionId: 'id',
       optionValue: 'categoryName',
     },
@@ -67,7 +68,8 @@ export class AccountRecordComponent implements OnInit {
     protected moneyAccountService: MoneyAccountService,
     protected categoryService: CategoryService,
     protected modalService: NgbModal,
-    protected parseLinks: ParseLinks
+    protected parseLinks: ParseLinks,
+    private router: Router
   ) {
     this.accountRecords = [];
     this.itemsPerPage = ITEMS_PER_PAGE;
@@ -112,6 +114,10 @@ export class AccountRecordComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const filter = localStorage.getItem(this.router.url);
+    if (filter) {
+      this._where = JSON.parse(filter);
+    }
     this.loadAll();
   }
 

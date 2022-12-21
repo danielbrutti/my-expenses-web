@@ -103,7 +103,9 @@ export class BudgetItemUpdateComponent implements OnInit {
 
   protected loadRelationshipsOptions(): void {
     this.budgetService
-      .query()
+      .queryAll({
+        sort: ['yearMonth', 'desc'],
+      })
       .pipe(map((res: HttpResponse<IBudget[]>) => res.body ?? []))
       .pipe(map((budgets: IBudget[]) => this.budgetService.addBudgetToCollectionIfMissing(budgets, this.editForm.get('budget')!.value)))
       .subscribe((budgets: IBudget[]) => (this.budgetsSharedCollection = budgets));

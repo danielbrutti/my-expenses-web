@@ -46,6 +46,11 @@ export class AccountRecordService {
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
+  queryAll(req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http.get<IAccountRecord[]>(`${this.resourceUrl}/all`, { params: options, observe: 'response' });
+  }
+
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http

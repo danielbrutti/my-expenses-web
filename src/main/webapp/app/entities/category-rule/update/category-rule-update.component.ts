@@ -89,7 +89,7 @@ export class CategoryRuleUpdateComponent implements OnInit {
 
   protected loadRelationshipsOptions(): void {
     this.categoryService
-      .query({ 'categoryRuleId.specified': 'false' })
+      .queryAll({ 'categoryRuleId.specified': 'false' })
       .pipe(map((res: HttpResponse<ICategory[]>) => res.body ?? []))
       .pipe(
         map((categories: ICategory[]) =>

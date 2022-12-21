@@ -111,7 +111,8 @@
       "edit": "Editar",
       "open": "Abrir",
       "save": "Guardar",
-      "view": "Vista"
+      "view": "Vista",
+      "copy": "Copiar"
     },
     "detail": {
       "field": "Campo",
@@ -119,6 +120,9 @@
     },
     "delete": {
       "title": "Confirmar operación de borrado"
+    },
+    "copy": {
+      "title": "Confirmar operación de copiado"
     },
     "validation": {
       "required": "Este campo es obligatorio.",

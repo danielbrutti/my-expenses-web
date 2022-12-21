@@ -90,9 +90,8 @@ export class AccountRecordTransferDialogComponent implements OnInit {
 
   protected loadRelationshipsOptions(): void {
     this.moneyAccountService
-      .query({
-        size: 100,
-        sort: ['accountType, ASC'],
+      .queryAll({
+        sort: ['accountType, asc'],
       })
       .pipe(map((res: HttpResponse<IMoneyAccount[]>) => res.body ?? []))
       .pipe(

@@ -49,6 +49,20 @@ export class MoneyAccountController {
         return results;
     }
 
+    @Get('/all')
+    @Roles(RoleType.USER)
+    @ApiResponse({
+        status: 200,
+        description: 'List all records without pagination',
+        type: MoneyAccountDTO,
+    })
+    async getAllNotPaginated(@Req() req: Request): Promise<MoneyAccountDTO[]> {
+        const pageRequest: PageRequest = new PageRequest(req.query.page, req.query.size, req.query.sort);
+        const [results, count] = await this.moneyAccountService.findAndCount({order: pageRequest.sort.asOrder()});
+        HeaderUtil.addPaginationHeaders(req.res, new Page(results, count, pageRequest));
+        return results;
+    }
+
     @Get('/:id')
     @Roles(RoleType.USER)
     @ApiResponse({

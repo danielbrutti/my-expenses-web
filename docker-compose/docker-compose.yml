@@ -25,7 +25,8 @@ services:
   metabase:
     networks:
     - docker-myexpenses
-    image: metabase/metabase
+    image: metabase/metabase:latest
+    pull_policy: always
     restart: always
     ports:
       - 3000:3000

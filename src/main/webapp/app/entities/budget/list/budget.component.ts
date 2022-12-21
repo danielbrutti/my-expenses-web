@@ -8,7 +8,7 @@ import { ITEMS_PER_PAGE } from 'app/config/pagination.constants';
 import { BudgetService } from '../service/budget.service';
 import { BudgetDeleteDialogComponent } from '../delete/budget-delete-dialog.component';
 import { ParseLinks } from 'app/core/util/parse-links.service';
-
+import { BudgetCopyDialogComponent } from '../copy/budget-copy-dialog.component';
 @Component({
   selector: 'jhi-budget',
   templateUrl: './budget.component.html',
@@ -70,6 +70,17 @@ export class BudgetComponent implements OnInit {
 
   trackId(index: number, item: IBudget): number {
     return item.id!;
+  }
+
+  copy(budget: IBudget): void {
+    const modalRef = this.modalService.open(BudgetCopyDialogComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.budget = budget;
+    // unsubscribe not needed because closed completes on modal close
+    modalRef.closed.subscribe(reason => {
+      if (reason === 'copied') {
+        this.reset();
+      }
+    });
   }
 
   delete(budget: IBudget): void {

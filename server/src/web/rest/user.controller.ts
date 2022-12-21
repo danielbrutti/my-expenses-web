@@ -51,6 +51,20 @@ export class UserController {
         return results;
     }
 
+    @Get('/all')
+    @Roles(RoleType.USER)
+    @ApiResponse({
+        status: 200,
+        description: 'List all records without pagination',
+        type: UserDTO,
+    })
+    async getAllNotPaginated(@Req() req: Request): Promise<UserDTO[]> {
+        const pageRequest: PageRequest = new PageRequest(req.query.page, req.query.size, req.query.sort);
+        const [results, count] = await this.userService.findAndCount({order: pageRequest.sort.asOrder()});
+        HeaderUtil.addPaginationHeaders(req.res, new Page(results, count, pageRequest));
+        return results;
+    }
+
     @Post('/')
     @Roles(RoleType.ADMIN)
     @ApiOperation({ title: 'Create user' })
